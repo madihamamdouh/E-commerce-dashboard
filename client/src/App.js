@@ -17,7 +17,7 @@ import { productInputs, userInputs } from "./formSource";
 import DashContext from "./components/dataContext";
 
 import {getCustomers} from './ShopifyFront/customer'
-import {getProducts} from './ShopifyFront/product'
+import {deleteProduct, getProducts} from './ShopifyFront/product'
 import {getOrders} from './ShopifyFront/order'
 import {getCategories} from './ShopifyFront/category'
 
@@ -31,11 +31,12 @@ function App() {
   const[orders, setOrders] = useState([]);
   const[categories, setCategories] = useState([]);
   
+
   useEffect(()=>{
     /***************** request all products ****************** */
     getProducts()
     .then((res)=>{
-      console.log(res.data)
+      // console.log(res.data)
       setProducts(res.data['products'])
     })
     .catch((er)=>{
@@ -44,7 +45,7 @@ function App() {
     /************ request orders ************************/
     getOrders()
     .then((res)=>{
-      console.log(res.data)
+      // console.log(res.data)
       setOrders(res.data['orders'])
     })
     .catch((er)=>{
@@ -53,7 +54,7 @@ function App() {
     /**************** request all customers ********************/
     getCustomers()
     .then((res)=>{
-      console.log(res.data)
+      // console.log(res.data)
       serCustomers(res.data['customers'])
     })
     .catch((er)=>{
@@ -62,8 +63,8 @@ function App() {
     /*****************  request all categories ********************/
     getCategories()
     .then((res)=>{
-      console.log(res.data)
-      setCategories(res.data4["categories"])
+      // console.log(res.data)
+      setCategories(res.data["categories"])
     })
     .catch((er)=>{
       console.log(er.response);

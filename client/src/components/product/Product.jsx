@@ -4,6 +4,7 @@ import { productColumns, productRows } from "../../productsource";
 import { Link } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import DashContext from "../dataContext";
+import { deleteProduct, getProduct } from "../../ShopifyFront/product";
 
 
 function Product({product}) {
@@ -11,7 +12,14 @@ function Product({product}) {
   const [data, setData] = useState(productRows);
   // const [product, setProduct] = setProduct({});
   const handleDelete = (id) => {
-    // setData(data.filter((item) => item.id !== id));
+    console.log(id);
+    deleteProduct(id)
+    .then((res)=>{
+        console.log(res.data);
+    })
+    .catch((er)=>{
+        console.log(er.response);
+    })
   };
 
   useEffect(()=>{

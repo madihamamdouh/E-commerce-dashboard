@@ -18,19 +18,52 @@ import DashContext from "./components/dataContext";
 
 import {getCustomers} from './ShopifyFront/customer'
 import {getProducts} from './ShopifyFront/product'
+import {getOrders} from './ShopifyFront/order'
+import {getCategories} from './ShopifyFront/category'
 
 //import RingLoader from "react-spinners/RingLoader";
 import { DarkModeContext } from "./Context/darkModeContext";
 function App() {
   const { darkMode } = useContext(DarkModeContext);
+
   const[products, setProducts] = useState([]);
+  const[customers, serCustomers] = useState([]);
+  const[orders, setOrders] = useState([]);
+  const[categories, setCategories] = useState([]);
   
   useEffect(()=>{
-
+    /***************** request all products ****************** */
     getProducts()
     .then((res)=>{
-      console.log(res.data['products'])
+      console.log(res.data)
       setProducts(res.data['products'])
+    })
+    .catch((er)=>{
+      console.log(er.response);
+    })
+    /************ request orders ************************/
+    getOrders()
+    .then((res)=>{
+      console.log(res.data)
+      setOrders(res.data['orders'])
+    })
+    .catch((er)=>{
+      console.log(er.response);
+    })
+    /**************** request all customers ********************/
+    getCustomers()
+    .then((res)=>{
+      console.log(res.data)
+      serCustomers(res.data['customers'])
+    })
+    .catch((er)=>{
+      console.log(er.response);
+    })
+    /*****************  request all categories ********************/
+    getCategories()
+    .then((res)=>{
+      console.log(res.data)
+      setCategories(res.data4["categories"])
     })
     .catch((er)=>{
       console.log(er.response);
@@ -39,7 +72,7 @@ function App() {
   }, [])
 
   return (
-    <DashContext.Provider value={{products}}>
+    <DashContext.Provider value={{products, orders, categories, customers}}>
     <div className={darkMode ? "app dark" : "app"}>
       <BrowserRouter>
         <Fragment>

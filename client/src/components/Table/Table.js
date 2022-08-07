@@ -7,7 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-const Tablee = () => {
+const Tablee = ({orders}) => {
   const rows = [
     {
       id: 1256,
@@ -55,21 +55,21 @@ const Tablee = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell className="tableRow">{row.id}</TableCell>
+          {orders !== undefined && orders.map((order) => (
+            <TableRow key={order.id}>
+              <TableCell className="tableRow">{order.id}</TableCell>
               <TableCell className="tableRow">
                 <div className="productWrapper">
-                  <img src={row.img} alt="" className="productImg" />
-                  {row.product}
+                  <img src={order.img} alt="" className="productImg" />
+                  {order.product}
                 </div>
               </TableCell>
-              <TableCell className="tableRow">{row.customer}</TableCell>
-              <TableCell className="tableRow">{row.date}</TableCell>
-              <TableCell className="tableRow">{row.amount}</TableCell>
-              <TableCell className="tableRow">{row.method}</TableCell>
+              <TableCell className="tableRow">{order.customer}</TableCell>
+              <TableCell className="tableRow">{order.date}</TableCell>
+              <TableCell className="tableRow">{order.amount}</TableCell>
+              <TableCell className="tableRow">{order.method}</TableCell>
               <TableCell className="tableRow">
-                <span className={row.status}> {row.status}</span>
+                <span className={order.status}> {order.status}</span>
               </TableCell>
             </TableRow>
           ))}

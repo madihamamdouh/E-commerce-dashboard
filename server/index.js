@@ -191,7 +191,7 @@ app.route('/orders/')
         getAllOrders()
             .then((response) => {
                 console.log(response.data);
-                res.json(response.data['orders'])
+                res.json(response.data)
             })
             .catch((er) => {
                 console.log(er.response);
@@ -264,12 +264,12 @@ app.route('/collections/')
 
         getAllCategories()
             .then((response) => {
-                console.log(response.data['custom_collections']);
-                res.json(response.data['custom_collections']);
+                console.log(response.data);
+                res.json(response.data);
             })
             .catch((er) => {
                 console.log(er.response);
-                res.status(501).send(wer.response)
+                res.status(501).send(er.response)
             })
     })
     .post((req, res) => {

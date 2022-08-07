@@ -38,15 +38,7 @@ function ProductSingle() {
 
     
 
-    // if (product) {
-    //   // toast.success("Product Added", ToastObjects);
-    //   dispatch({ type: "PRODUCT_CREATE_RESET" });
-    //   setName("");
-    //   setDescription("");
-    //   setCountInStock(0);
-    //   setImage("");
-    //   setPrice(0);
-    // }
+  
     console.log(products);
   }, [products]);
 

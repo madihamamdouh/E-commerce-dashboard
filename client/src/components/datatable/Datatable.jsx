@@ -2,14 +2,33 @@ import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../../datatablesource";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
+import DashContext from "../dataContext";
 
 const Datatable = () => {
   const [data, setData] = useState(userRows);
-
+  const { customers } = useContext(DashContext);
   const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+    // setData(data.filter((item) => item.id !== id));
   };
+
+  useEffect(() => {
+
+    let rowCustomers = [];
+    customers.map((customer) => {
+      let rowCustomer = {
+
+        id: customer.id,
+        username: customer.first_name + " " + customer.last_name,
+        img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+        email: customer.email,
+        status: customer.state,
+        age: 0,
+      }
+      rowCustomers.push(rowCustomer);
+    })
+    setData(rowCustomers);
+  }, [customers])
 
   const actionColumn = [
     {

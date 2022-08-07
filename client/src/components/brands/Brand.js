@@ -1,15 +1,15 @@
-import "./product.scss";
+import "./brand.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { productColumns, productRows } from "../../productsource";
+import { productColumns } from "../../categorydatasourc";
 import { Link } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import DashContext from "../dataContext";
 import { deleteProduct, getProduct } from "../../ShopifyFront/product";
 
 
-function Product({product}) {
-  const {products} = useContext(DashContext);
-  const [data, setData] = useState(productRows);
+function Brand() {
+  const {categories} = useContext(DashContext);
+  const [data, setData] = useState([]);
   // const [product, setProduct] = setProduct({});
   const handleDelete = (id) => {
     console.log(id);
@@ -23,21 +23,21 @@ function Product({product}) {
   };
 
   useEffect(()=>{
+    console.log("************************************************************");
+   console.log(categories);
+    let rowCategories = [];
+     categories?.map((category)=>{
+        let customCategory = {
 
-    let rowProducts = [];
-    products.map((product)=>{
-        let customProduct = {
-
-          id : product.id , 
-          name : product.title, 
-          img : "https://cdn.sklum.com/ie/1062614/sofa-de-2-plazas-en-lino-y-tela-aktic.jpg", 
-          price : product.variants[0].price , 
-          description : product.body_html, 
+          id : category.id , 
+          name : category.title, 
+          img : category.image, 
+          description : category.body_html, 
         }
-        rowProducts.push(customProduct);
+        rowCategories.push(customCategory);
     })
-    setData(rowProducts);
-  }, [products])
+    setData(rowCategories);
+  }, [categories])
   
   
   const actionColumn = [
@@ -65,9 +65,9 @@ function Product({product}) {
   return (
     <div className="product">
       <div className="productTitle">
-        All products
+        All Brands
         <Link to="/products/new" className="link">
-          Add New
+          Add New Brand
         </Link>
       </div>
       <DataGrid
@@ -81,4 +81,4 @@ function Product({product}) {
     </div>
   );
 }
-export default Product;
+export default Brand;

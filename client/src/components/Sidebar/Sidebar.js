@@ -70,8 +70,8 @@ const Sidebar = () => {
           </li>
           <li className="dashitem">
             <LocalShippingIcon className="icon" />
-            <Link to="/list" className="link">
-              Delivery
+            <Link to="/brand" className="link">
+              Brands
             </Link>
           </li>
           <li className="dashitem">
@@ -88,10 +88,10 @@ const Sidebar = () => {
           </li>
         </ul>
       </div>
-      <div className="bottom">
+      {/* <div className="bottom">
         <div className="colorOpt" onClick={() => dd({ type: "LIGHT" })}></div>
         <div className="colorOpt" onClick={() => dd({ type: "DARK" })}></div>
-      </div>
+      </div> */}
     </div>
   );
 };

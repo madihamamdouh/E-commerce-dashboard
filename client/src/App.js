@@ -13,6 +13,7 @@ import ProductList from "./pages/productList/ProductList";
 import ProductSingle from "./pages/productSingle/ProductSingle";
 import Update from "./pages/update/Update";
 import { productInputs, userInputs } from "./formSource";
+import Brand from './components/brands/Brand'
 
 import DashContext from "./components/dataContext";
 
@@ -63,8 +64,8 @@ function App() {
     /*****************  request all categories ********************/
     getCategories()
     .then((res)=>{
-      // console.log(res.data)
-      setCategories(res.data["categories"])
+       console.log(res.data)
+      setCategories(res.data["custom_collections"])
     })
     .catch((er)=>{
       console.log(er.response);
@@ -109,6 +110,7 @@ function App() {
                 />
               </Route>
               <Route path="/orders" element={<Orders />} />
+              <Route path="/brand" element={<Brand/>} />
             </Route>
             <Route path="/login" element={<Login />} />
           </Routes>

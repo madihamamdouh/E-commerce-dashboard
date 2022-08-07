@@ -1,5 +1,6 @@
 export const userColumns = [
   { field: "id", headerName: "ID", width: 150 },
+  
   {
     field: "user",
     headerName: "username",
@@ -31,6 +32,7 @@ export const userColumns = [
       );
     },
   },
+  { field : 'total_spent', headerName : "Total spent", width : 200}, 
 ];
 
 //temporary data

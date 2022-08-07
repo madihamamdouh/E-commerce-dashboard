@@ -1,5 +1,5 @@
 export const productColumns = [
-    { field: "id", headerName: "ID", width: 70 },
+    { field: "id", headerName: "ID", width: 150 },
 
     {field: "product",
     headerName: "Product",
@@ -7,7 +7,7 @@ export const productColumns = [
     renderCell: (params) => {
       return (
         <div className="cellWithImg">
-          <img className="cellImg" src={params.row.img} alt="avatar" />
+          <img className="cellImg" src={params.row.img} alt="IMG" />
           {params.row.name}
         </div>
       );
@@ -23,7 +23,7 @@ export const productColumns = [
     {
       field: "description",
       headerName: "Description",
-      width: 160,
+      width: 500,
     },
   ];
   

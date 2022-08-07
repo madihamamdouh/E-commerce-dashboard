@@ -1,4 +1,4 @@
-import React, { useContext, Fragment, useEffect } from "react";
+import React, { useContext, Fragment, useEffect, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import PrivateRoute from "./PrivateRouts";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -14,18 +14,23 @@ import ProductSingle from "./pages/productSingle/ProductSingle";
 import Update from "./pages/update/Update";
 import { productInputs, userInputs } from "./formSource";
 
+import DashContext from "./components/dataContext";
+
 import {getCustomers} from './ShopifyFront/customer'
+import {getProducts} from './ShopifyFront/product'
 
 //import RingLoader from "react-spinners/RingLoader";
 import { DarkModeContext } from "./Context/darkModeContext";
 function App() {
   const { darkMode } = useContext(DarkModeContext);
+  const[products, setProducts] = useState([]);
   
   useEffect(()=>{
 
-    getCustomers()
+    getProducts()
     .then((res)=>{
-      console.log(res.data['customers'])
+      console.log(res.data['products'])
+      setProducts(res.data['products'])
     })
     .catch((er)=>{
       console.log(er.response);
@@ -34,6 +39,7 @@ function App() {
   }, [])
 
   return (
+    <DashContext.Provider value={{products}}>
     <div className={darkMode ? "app dark" : "app"}>
       <BrowserRouter>
         <Fragment>
@@ -75,6 +81,7 @@ function App() {
         </Fragment>
       </BrowserRouter>
     </div>
+    </DashContext.Provider>
   );
 }
 

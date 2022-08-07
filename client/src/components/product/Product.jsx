@@ -2,15 +2,36 @@ import "./product.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { productColumns, productRows } from "../../productsource";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
+import DashContext from "../dataContext";
 
-function Product() {
+
+function Product({product}) {
+  const {products} = useContext(DashContext);
   const [data, setData] = useState(productRows);
-
+  // const [product, setProduct] = setProduct({});
   const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+    // setData(data.filter((item) => item.id !== id));
   };
 
+  useEffect(()=>{
+
+    let rowProducts = [];
+    products.map((product)=>{
+        let customProduct = {
+
+          id : product.id , 
+          name : product.title, 
+          img : "https://cdn.sklum.com/ie/1062614/sofa-de-2-plazas-en-lino-y-tela-aktic.jpg", 
+          price : product.variants[0].price , 
+          description : "any descriptoin", 
+        }
+        rowProducts.push(customProduct);
+    })
+    setData(rowProducts);
+  }, [products])
+  
+  
   const actionColumn = [
     {
       field: "action",

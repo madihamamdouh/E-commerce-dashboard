@@ -18,7 +18,7 @@ app.route('/products/')
             .then((response) => {
 
                 console.log(response.data['products']);
-                res.json(response.data['products'])
+                res.json(response.data)
             })
             .catch((e) => {
                 console.log(e);

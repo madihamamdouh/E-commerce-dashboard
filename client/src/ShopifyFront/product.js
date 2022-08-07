@@ -87,4 +87,4 @@ function addImage(productId, _src, _width, _height, _alt){
 
 }
 
-export {deleteProduct, editProductData, getProduct, updateProduct, addProduct, getProducts,  getImages, addImage}
+export {deleteProduct, getProduct, updateProduct, addProduct, getProducts,  getImages, addImage}

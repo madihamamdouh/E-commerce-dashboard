@@ -1,0 +1,108 @@
+.app.dark {
+  .home {
+    background-color: black;
+    color: #b4b4b4;
+  }
+
+  .table {
+    .tableCell {
+      color: #b4b4b4;
+    }
+
+    background-color: rgb(44, 44, 44);
+    .tableRow {
+      color: #b4b4b4;
+    }
+  }
+
+  .navbar {
+    color: #b4b4b4;
+    background-color: black;
+    .search {
+      color: #b4b4b4;
+      border: 1px solid #b4b4b4;
+    }
+  }
+
+  .sidebar {
+    background-color: black;
+    box-shadow: 2px 4px 10px rgba(37, 36, 36, 0.651);
+    .profile {
+      .link {
+        color: #b4b4b4;
+      }
+    }
+    .link {
+      color: #b4b4b4;
+    }
+    .img {
+      box-shadow: 2px 4px 10px rgba(172, 172, 172, 0.288);
+    }
+  }
+
+  .featured {
+    color: #b4b4b4;
+    box-shadow: 2px 4px 10px rgba(37, 36, 36, 0.651);
+    .top {
+      color: #b4b4b4;
+    }
+    .bottom {
+      color: #b4b4b4;
+    }
+  }
+
+  .widget {
+    box-shadow: 2px 4px 10px rgba(37, 36, 36, 0.651);
+    .left {
+      .title {
+        color: #b4b4b4;
+      }
+    }
+  }
+  .list {
+    background-color: black;
+  }
+  .datatable {
+    box-shadow: 2px 4px 10px rgba(37, 36, 36, 0.651);
+    background-color: rgb(44, 44, 44);
+    .datatableTitle {
+      color: #b4b4b4;
+    }
+  }
+  .product {
+    box-shadow: 2px 4px 10px rgba(37, 36, 36, 0.651);
+    background-color: rgb(44, 44, 44);
+  }
+
+  .order {
+    background-color: rgb(0, 0, 0);
+    .listContainer {
+      box-shadow: 2px 4px 10px rgba(32, 32, 32, 0.651);
+      .listTitle {
+        color: #cecece;
+      }
+    }
+  }
+  .new {
+    background-color: rgb(0, 0, 0);
+    .bottom {
+      background-color: rgba(44, 44, 44, 0.26);
+      box-shadow: 2px 4px 10px rgba(32, 32, 32, 0.651);
+      h1 {
+        color: #cecece;
+      }
+      .right {
+        .formInput {
+          color: #cecece;
+          input {
+            background: rgba(133, 132, 132, 0.342);
+          }
+        }
+
+        button {
+          color: #000;
+        }
+      }
+    }
+  }
+}

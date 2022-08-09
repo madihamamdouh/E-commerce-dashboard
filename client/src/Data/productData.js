@@ -22,12 +22,12 @@ export const userColumns = [
   {
     field: "age",
     headerName: "Age",
-    width: 100,
+    width: 80,
   },
   {
     field: "status",
     headerName: "Status",
-    width: 160,
+    width: 100,
     renderCell: (params) => {
       return (
         <div className={`cellWithStatus ${params.row.status}`}>

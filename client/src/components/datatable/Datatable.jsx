@@ -1,9 +1,9 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../datatablesource";
+import { userColumns, userRows } from "../../Data/productData";
 import { Link } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
-import DashContext from "../dataContext";
+import DashContext from "../../Context/dataContext";
 import { deleteCustomer } from "../../ShopifyFront/customer";
 
 const Datatable = () => {
@@ -12,66 +12,55 @@ const Datatable = () => {
   const handleDelete = (id) => {
     deleteCustomer(id)
       .then((res) => {
-        console.log('deleted');
+        console.log("deleted");
       })
       .catch((er) => {
         console.log(er.response);
-      })
+      });
   };
 
   useEffect(() => {
-
     let rowCustomers = [];
     customers.map((customer) => {
       let rowCustomer = {
-
         id: customer.id,
         username: customer.first_name + " " + customer.last_name,
         img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
         email: customer.email,
         status: customer.state,
         age: 0,
-      }
+      };
       rowCustomers.push(rowCustomer);
-    })
+    });
     setData(rowCustomers);
-  }, [customers])
+  }, [customers]);
+  const actionColumn = [
+    {
+      field: "action",
+      headerName: "Action",
+      width: 200,
+      renderCell: (params) => {
+        return (
+          <div className="cellAction">
+            <div
+              className="deleteButton"
+              onClick={() => handleDelete(params.row.id)}
+            >
+              Delete
+            </div>
+          </div>
+        );
+      },
+    },
+  ];
 
-  // const actionColumn = [
-  //   {
-  //     field: "action",
-  //     headerName: "Action",
-  //     width: 200,
-  //     renderCell: (params) => {
-  //       return (
-  //         <></>
-  //         // <div className="cellAction">
-  //         //   <Link to="/users/update" style={{ textDecoration: "none" }}>
-  //         //     <div className="viewButton">Edit</div>
-  //         //   </Link>
-  //         //   <div
-  //         //     className="deleteButton"
-  //         //     onClick={() => handleDelete(params.row.id)}
-  //         //   >
-  //         //     Delete
-  //         //   </div>
-  //         // </div>
-  //       );
-  //     },
-  //   },
-  // ];
   return (
     <div className="datatable">
-      {/* <div className="datatableTitle">
-        All users
-        <Link to="/users/new" className="link">
-          Add New
-        </Link>
-      </div> */}
+      <div className="datatableTitle">All users</div>
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={userColumns}
+        columns={userColumns.concat(actionColumn)}
         pageSize={8}
         rowsPerPageOptions={[8]}
         checkboxSelection

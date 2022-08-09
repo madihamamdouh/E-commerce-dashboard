@@ -15,21 +15,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    .link {
-      text-decoration: none;
-      background-color: #ff2d55;
-      color: #fff;
-      font-size: 0.8em;
-      font-weight: 400;
-      padding: 8px;
-      border-radius: 8px;
-      cursor: pointer;
-      &:hover {
-        transform: scale(1);
-        box-shadow: 2px 4px 10px #ff2d5363;
-      }
-    }
   }
 
   .cellWithImg {

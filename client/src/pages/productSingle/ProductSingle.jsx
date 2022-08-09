@@ -3,49 +3,9 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
 import Chart from "../../components/Chart/Chart";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { createProduct } from "../../Redux/Actions/ProductAction";
-import { useContext, useEffect, useState } from "react";
-import { toast } from "react-toastify";
-import DashContext from "../../components/dataContext";
+import DashContext from "../../Context/dataContext";
 
-// const ToastObjects = {
-//   pauseOnFocusLoss: false,
-//   draggable: false,
-//   pauseOnHover: false,
-//   autoClose: 2000,
-// };
 function ProductSingle() {
-  
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState(0);
-  const [image, setImage] = useState("");
-  const [countInStock, setCountInStock] = useState(0);
-  const [description, setDescription] = useState("");
-
-  const dispatch = useDispatch();
-  const {products} = useContext(DashContext);
-  const productCreate = useSelector((state) => state.productCreate);
-  const { isFetching, error, product } = productCreate;
-  /******************************************************************* */
-
-
-  
-  /******************************************************************* */
-
-
-  useEffect(() => {
-
-    
-
-  
-    console.log(products);
-  }, [products]);
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-    dispatch(createProduct(name, price, description, image, countInStock));
-  };
   return (
     <div className="single">
       <Sidebar />

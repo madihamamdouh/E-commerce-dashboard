@@ -2,21 +2,16 @@ import { Link } from "react-router-dom";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import SupervisedUserCircleIcon from "@mui/icons-material/SupervisedUserCircle";
 import CategoryIcon from "@mui/icons-material/Category";
-import LocalShippingIcon from "@mui/icons-material/LocalShipping";
-import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
+import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
+import LocalMallIcon from "@mui/icons-material/LocalMall";
 import LogoutIcon from "@mui/icons-material/Logout";
 import "./sidebar.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "../../Context/darkModeContext";
-import { useDispatch } from "react-redux";
-import { logout } from "../../Redux/Actions/UserAction";
-const Sidebar = () => {
-  const { dd } = useContext(DarkModeContext);
-  const dispatch = useDispatch();
 
-  const logoutHandler = () => {
-    dispatch(logout());
-  };
+const Sidebar = () => {
+  const { dispatch } = useContext(DarkModeContext);
+
   return (
     <div className="sidebar">
       <div className="top">
@@ -38,60 +33,54 @@ const Sidebar = () => {
 
       <div className="center">
         <ul className="dashlist">
-          <li className="dashitem">
-            <DashboardIcon className="icon" />
-            <span>
-              <Link to="/" className="link">
-                Dashboard
-              </Link>
-            </span>
-          </li>
-          <li className="dashitem">
-            <SupervisedUserCircleIcon className="icon" />
-            <span>
-              <Link to="/users" className="link">
-                Users
-              </Link>
-            </span>
-          </li>
-          <li className="dashitem">
-            <CategoryIcon className="icon" />
-            <span>
-              <Link to="/products" className="link">
-                Products
-              </Link>
-            </span>
-          </li>
-          <li className="dashitem">
-            <DashboardIcon className="icon" />
-            <Link to="/orders" className="link">
+          <Link to="/" className="link">
+            <li className="dashitem">
+              <DashboardIcon className="icon" />
+              <span>Dashboard</span>
+            </li>
+          </Link>
+          <Link to="/users" className="link">
+            <li className="dashitem">
+              <SupervisedUserCircleIcon className="icon" />
+              <span>Users</span>
+            </li>
+          </Link>
+          <Link to="/products" className="link">
+            <li className="dashitem">
+              <CategoryIcon className="icon" />
+              <span>Products</span>
+            </li>
+          </Link>
+          <Link to="/orders" className="link">
+            <li className="dashitem">
+              <ReceiptLongIcon className="icon" />
               Orders
-            </Link>
-          </li>
-          <li className="dashitem">
-            <LocalShippingIcon className="icon" />
-            <Link to="/brand" className="link">
+            </li>
+          </Link>
+          <Link to="/brands" className="link">
+            <li className="dashitem">
+              <LocalMallIcon className="icon" />
               Brands
-            </Link>
-          </li>
-          <li className="dashitem">
-            <NotificationsActiveIcon className="icon" />
-            <Link to="/list" className="link">
-              Notifications
-            </Link>
-          </li>
-          <li className="dashitem" onClick={logoutHandler}>
-            <LogoutIcon className="icon" />
-            <Link to="/login" className="link">
+            </li>
+          </Link>
+          <Link to="/login" className="link">
+            <li className="dashitem">
+              <LogoutIcon className="icon" />
               Logout
-            </Link>
-          </li>
+            </li>
+          </Link>
         </ul>
       </div>
-      {/* <div className="bottom">
-        <div className="colorOpt" onClick={() => dd({ type: "LIGHT" })}></div>
-        <div className="colorOpt" onClick={() => dd({ type: "DARK" })}></div>
-      </div> */}
+      <div className="bottom">
+        <div
+          className="colorOpt"
+          onClick={() => dispatch({ type: "LIGHT" })}
+        ></div>
+        <div
+          className="colorOpt"
+          onClick={() => dispatch({ type: "DARK" })}
+        ></div>
+      </div>
     </div>
   );
 };

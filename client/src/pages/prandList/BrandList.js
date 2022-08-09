@@ -1,18 +1,18 @@
-import "./productList.scss";
+import "./brandList.scss";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
-import Product from "../../components/product/Product";
+import Brand from "../../components/brands/Brand";
 
-const ProductList = () => {
+const BrandList = () => {
   return (
     <div className="list">
       <Sidebar />
       <div className="listContainer">
         <Navbar />
-        <Product />
+        <Brand />
       </div>
     </div>
   );
 };
 
-export default ProductList;
+export default BrandList;

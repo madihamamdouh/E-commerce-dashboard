@@ -7,10 +7,10 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-const Tablee = ({orders}) => {
+const Tablee = ({ orders }) => {
   const rows = [
     {
-      id: 1256,
+      id: 3586,
       product: "T-shert Adidas",
       customer: "Mohammed Ashraf",
       img: "https://images.unsplash.com/photo-1581655353564-df123a1eb820?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80",
@@ -55,24 +55,25 @@ const Tablee = ({orders}) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {orders !== undefined && orders.map((order) => (
-            <TableRow key={order.id}>
-              <TableCell className="tableRow">{order.id}</TableCell>
-              <TableCell className="tableRow">
-                <div className="productWrapper">
-                  <img src={order.img} alt="" className="productImg" />
-                  {order.product}
-                </div>
-              </TableCell>
-              <TableCell className="tableRow">{order.customer}</TableCell>
-              <TableCell className="tableRow">{order.date}</TableCell>
-              <TableCell className="tableRow">{order.amount}</TableCell>
-              <TableCell className="tableRow">{order.method}</TableCell>
-              <TableCell className="tableRow">
-                <span className={order.status}> {order.status}</span>
-              </TableCell>
-            </TableRow>
-          ))}
+          {orders !== undefined &&
+            orders.map((order) => (
+              <TableRow key={order.id}>
+                <TableCell className="tableRow">{order.id}</TableCell>
+                <TableCell className="tableRow">
+                  <div className="productWrapper">
+                    <img src={order.img} alt="" className="productImg" />
+                    {order.product}
+                  </div>
+                </TableCell>
+                <TableCell className="tableRow">{order.customer}</TableCell>
+                <TableCell className="tableRow">{order.date}</TableCell>
+                <TableCell className="tableRow">{order.amount}</TableCell>
+                <TableCell className="tableRow">{order.method}</TableCell>
+                <TableCell className="tableRow">
+                  <span className={order.status}> {order.status}</span>
+                </TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </TableContainer>

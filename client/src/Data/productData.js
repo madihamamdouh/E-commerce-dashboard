@@ -1,9 +1,8 @@
 export const userColumns = [
-  { field: "id", headerName: "ID", width: 150 },
-  
+  { field: "id", headerName: "ID", width: 70 },
   {
     field: "user",
-    headerName: "username",
+    headerName: "User",
     width: 230,
     renderCell: (params) => {
       return (
@@ -17,9 +16,14 @@ export const userColumns = [
   {
     field: "email",
     headerName: "Email",
-    width: 280,
+    width: 230,
   },
 
+  {
+    field: "age",
+    headerName: "Age",
+    width: 100,
+  },
   {
     field: "status",
     headerName: "Status",
@@ -32,7 +36,6 @@ export const userColumns = [
       );
     },
   },
-  { field : 'total_spent', headerName : "Total spent", width : 200}, 
 ];
 
 //temporary data

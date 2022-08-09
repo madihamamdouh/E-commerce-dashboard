@@ -3,10 +3,42 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
+import { addProduct } from "../../ShopifyFront/product";
 
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
+  const [name, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [price, setPrice] = useState("");
+  const [category, setCategory] = useState("");
+  const [brand, setBrand] = useState("");
+  const [vendor, setVendor] = useState("");
+  const [inStock, setInStock] = useState(false);
 
+  const createPostHandler = async (e) => {
+    e.preventDefault();
+    const newProduct = { name, desc, price, inStock, brand, category, vendor };
+
+    // if (file) {
+    //   const data = new FormData();
+    //   const filename = Date.now() + file.name;
+    //   data.append("name", filename);
+    //   data.append("file", file);
+    //   newProduct.img[0] = filename;
+    //   try {
+    //     addImage(productId, _src, _width, _height, _alt)
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // }
+    try {
+      const res = addProduct(newProduct);
+      console.log(res.data);
+      window.location.replace("/product/" + res.data.id);
+    } catch (err) {
+      console.log(err.response.data);
+    }
+  };
   return (
     <div className="new">
       <Sidebar />
@@ -26,7 +58,7 @@ const New = ({ inputs, title }) => {
             />
           </div>
           <div className="right">
-            <form>
+            <form onSubmit={createPostHandler}>
               <div className="formInput">
                 <label htmlFor="file">
                   Image: <DriveFolderUploadOutlinedIcon className="icon" />
@@ -45,7 +77,7 @@ const New = ({ inputs, title }) => {
                   <input type={input.type} placeholder={input.placeholder} />
                 </div>
               ))}
-              <button> Done </button>
+              <button type="submit"> Done </button>
             </form>
           </div>
         </div>

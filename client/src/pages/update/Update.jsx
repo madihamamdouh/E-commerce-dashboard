@@ -40,12 +40,19 @@ const Update = ({ inputs, title }) => {
               </div>
 
               {inputs.map((input) => (
-                <div className="formInput" key={input.id}>
+                <div
+                  className={
+                    input.type === "brandInputs"
+                      ? "brandInput"
+                      : "productInputs"
+                  }
+                  key={input.id}
+                >
                   <label>{input.label}</label>
                   <input type={input.type} placeholder={input.placeholder} />
                 </div>
               ))}
-              <button> Update </button>
+              <button> Add </button>
             </form>
           </div>
         </div>

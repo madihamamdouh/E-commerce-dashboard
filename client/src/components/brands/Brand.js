@@ -1,84 +1,59 @@
+import * as React from "react";
 import "./brand.scss";
-import { DataGrid } from "@mui/x-data-grid";
-import { productColumns } from "../../categorydatasourc";
+import ImageList from "@mui/material/ImageList";
+import ImageListItem from "@mui/material/ImageListItem";
+import ImageListItemBar from "@mui/material/ImageListItemBar";
+import ListSubheader from "@mui/material/ListSubheader";
+import IconButton from "@mui/material/IconButton";
+import InfoIcon from "@mui/icons-material/Info";
+import Button from "@mui/material/Button";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import SendIcon from "@mui/icons-material/Send";
+import Stack from "@mui/material/Stack";
+import { itemData } from "../../Data/datatablesource";
 import { Link } from "react-router-dom";
-import { useState, useContext, useEffect } from "react";
-import DashContext from "../dataContext";
-import { deleteProduct, getProduct } from "../../ShopifyFront/product";
 
-
-function Brand() {
-  const {categories} = useContext(DashContext);
-  const [data, setData] = useState([]);
-  // const [product, setProduct] = setProduct({});
-  const handleDelete = (id) => {
-    console.log(id);
-    deleteProduct(id)
-    .then((res)=>{
-        console.log(res.data);
-    })
-    .catch((er)=>{
-        console.log(er.response);
-    })
-  };
-
-  useEffect(()=>{
-    console.log("************************************************************");
-   console.log(categories);
-    let rowCategories = [];
-     categories?.map((category)=>{
-        let customCategory = {
-
-          id : category.id , 
-          name : category.title, 
-          img : category.image, 
-          description : category.body_html, 
-        }
-        rowCategories.push(customCategory);
-    })
-    setData(rowCategories);
-  }, [categories])
-  
-  
-  const actionColumn = [
-    {
-      field: "action",
-      headerName: "Action",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="cellAction">
-            <Link to="/products/update" style={{ textDecoration: "none" }}>
-              <div className="viewButton">Edit</div>
-            </Link>
-            <div
-              className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
-            >
-              Delete
-            </div>
-          </div>
-        );
-      },
-    },
-  ];
+export default function Brand() {
   return (
-    <div className="product">
-      <div className="productTitle">
-        All Brands
-        <Link to="/products/new" className="link">
+    <div className="brandContainer">
+      <div className="brandTitle">
+        All brands
+        <Link to="/brands/new" className="link">
           Add New Brand
         </Link>
       </div>
-      <DataGrid
-        className="datagrid"
-        rows={data}
-        columns={productColumns.concat(actionColumn)}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
-        checkboxSelection
-      />
+      <ImageList sx={{ width: 780, height: 500 }}>
+        <ImageListItem key="Subheader" cols={2}>
+          <ListSubheader component="div" className="imageList">
+            brand collection
+          </ListSubheader>
+        </ImageListItem>
+        {itemData.map((item) => (
+          <ImageListItem key={item.img}>
+            <img
+              src={`${item.img}?w=248&fit=crop&auto=format`}
+              style={{ width: "100%" }}
+              srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+              alt={item.title}
+              loading="lazy"
+            />
+            <ImageListItemBar
+              title={item.title}
+              subtitle={item.author}
+              actionIcon={
+                <Link to="/products/new" style={{ textDecoration: "none" }}>
+                  <Button
+                    style={{ color: "#fff" }}
+                    startIcon={<AddCircleIcon />}
+                  >
+                    add product
+                  </Button>
+                </Link>
+              }
+            />
+          </ImageListItem>
+        ))}
+      </ImageList>
     </div>
   );
 }
-export default Brand;

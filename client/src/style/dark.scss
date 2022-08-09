@@ -72,6 +72,9 @@
   .product {
     box-shadow: 2px 4px 10px rgba(37, 36, 36, 0.651);
     background-color: rgb(44, 44, 44);
+    .productTitle {
+      color: #cecece;
+    }
   }
 
   .order {
@@ -104,5 +107,17 @@
         }
       }
     }
+  }
+
+  .brandContainer {
+    .imageList {
+      color: #cecece;
+      background: rgba(0, 0, 0, 0.342);
+    }
+    .brandTitle {
+      color: #ffffff;
+    }
+    background-color: #000;
+    box-shadow: 2px 4px 10px rgba(32, 32, 32, 0.651);
   }
 }

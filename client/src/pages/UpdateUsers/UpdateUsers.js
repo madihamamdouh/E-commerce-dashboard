@@ -1,9 +1,8 @@
-import "./update.scss";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
 import { useState } from "react";
 
-const Update = ({ inputs, title }) => {
+const UpdateUser = ({ inputs, title }) => {
   const [file, setFile] = useState("");
   return (
     <div className="new">
@@ -24,13 +23,7 @@ const Update = ({ inputs, title }) => {
             />
           </div>
           <div className="right">
-            <form
-              className={
-                title === "Add New Product" || "Update Product"
-                  ? "form1"
-                  : "form2"
-              }
-            >
+            <form className="form1">
               <div className="formInput">
                 <label htmlFor="file">Image:</label>
                 <input
@@ -47,7 +40,7 @@ const Update = ({ inputs, title }) => {
                   <input type={input.type} placeholder={input.placeholder} />
                 </div>
               ))}
-              <button> Add </button>
+              <button> UPDATE </button>
             </form>
           </div>
         </div>
@@ -56,4 +49,4 @@ const Update = ({ inputs, title }) => {
   );
 };
 
-export default Update;
+export default UpdateUser;

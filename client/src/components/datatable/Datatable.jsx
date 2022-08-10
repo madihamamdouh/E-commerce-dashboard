@@ -1,10 +1,10 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../../Data/productData";
-import { Link } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import DashContext from "../../Context/dataContext";
 import { deleteCustomer } from "../../ShopifyFront/customer";
+import { Link } from "react-router-dom";
 
 const Datatable = () => {
   const [data, setData] = useState(userRows);
@@ -42,6 +42,12 @@ const Datatable = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
+            <Link
+              to={`/users/${params.row.id}`}
+              style={{ textDecoration: "none" }}
+            >
+              <div className="viewButton">View</div>
+            </Link>
             <div
               className="deleteButton"
               onClick={() => handleDelete(params.row.id)}
@@ -56,7 +62,7 @@ const Datatable = () => {
 
   return (
     <div className="datatable" style={{ height: 490, width: "92%" }}>
-      <div className="datatableTitle">All products</div>
+      <div className="datatableTitle">All Users</div>
       <DataGrid
         rows={data}
         columns={userColumns.concat(actionColumn)}

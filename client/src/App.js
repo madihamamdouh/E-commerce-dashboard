@@ -9,12 +9,18 @@ import Login from "./pages/Login/Login";
 import List from "./pages/List/List";
 import Orders from "./pages/Orders/Orders";
 import Single from "./pages/Single/Single";
-import New from "./pages/New/New";
 import ProductList from "./pages/productList/ProductList";
 import ProductSingle from "./pages/productSingle/ProductSingle";
 import Update from "./pages/update/Update";
-import { productInputs, brandInputs } from "./Data/formSource";
-import Brand from "./components/brands/Brand";
+import UpdateUser from "./pages/UpdateUsers/UpdateUsers";
+import {
+  productInputs,
+  brandInputs,
+  userInputs,
+  adminInputs,
+} from "./Data/formSource";
+import { user, admin } from "./Data/adminUserData";
+
 //context
 import DashContext from "./Context/dataContext";
 import { DarkModeContext } from "./Context/darkModeContext";
@@ -79,9 +85,25 @@ function App() {
             <Routes>
               <Route path="/" element={<PrivateRoute />}>
                 <Route path="/" element={<Home />} />
+
+                <Route path="admin">
+                  <Route index element={<Single users={admin} />} />
+                  <Route
+                    path="update"
+                    element={
+                      <UpdateUser inputs={adminInputs} title="Update Admin" />
+                    }
+                  />
+                </Route>
                 <Route path="users">
                   <Route index element={<List />} />
-                  <Route path=":userId" element={<Single />} />
+                  <Route path=":userId" element={<Single users={user} />} />
+                  <Route
+                    path="update"
+                    element={
+                      <UpdateUser inputs={userInputs} title="Update User" />
+                    }
+                  />
                 </Route>
                 <Route path="products">
                   <Route index element={<ProductList />} />

@@ -24,8 +24,8 @@ const Sidebar = () => {
           <hr />
         </div>
         <div className="profile">
-          <img src="./images/14.jpg" alt="profile" />
-          <Link to="/users:" className="link">
+          <img src="./images/14.jpg" alt="" />
+          <Link to="/admin" className="link">
             Nona salem
           </Link>
         </div>

@@ -6,6 +6,7 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import DragHandleOutlinedIcon from "@mui/icons-material/DragHandleOutlined";
 import { useContext } from "react";
 import { DarkModeContext } from "../../Context/darkModeContext";
+import { Link } from "react-router-dom";
 const Navebar = () => {
   const { dispatch } = useContext(DarkModeContext);
 
@@ -31,9 +32,12 @@ const Navebar = () => {
             <NotificationsNoneOutlinedIcon className="icon" />
             <div className="notify"></div>
           </div>
-          <div className="item">
-            <img src="./images/14.jpg" alt="avatar" className="avatar" />
-          </div>
+          <Link to="/admin">
+            <div className="item">
+              <img src="./images/14.jpg" alt="avatar" className="avatar" />
+            </div>
+          </Link>
+
           <div className="item">
             <DragHandleOutlinedIcon className="icon" />
           </div>

@@ -13,7 +13,7 @@ import New from "./pages/New/New";
 import ProductList from "./pages/productList/ProductList";
 import ProductSingle from "./pages/productSingle/ProductSingle";
 import Update from "./pages/update/Update";
-import { productInputs, userInputs, brandInputs } from "./Data/formSource";
+import { productInputs, brandInputs } from "./Data/formSource";
 import Brand from "./components/brands/Brand";
 //context
 import DashContext from "./Context/dataContext";

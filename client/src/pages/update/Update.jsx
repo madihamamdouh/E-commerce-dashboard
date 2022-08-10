@@ -1,7 +1,6 @@
 import "./update.scss";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
-import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
 
 const Update = ({ inputs, title }) => {
@@ -26,16 +25,20 @@ const Update = ({ inputs, title }) => {
             />
           </div>
           <div className="right">
-            <form className={title === "Add New Product" ? "form1" : "form2"}>
+            <form
+              className={
+                title === "Add New Product" || "Update Product"
+                  ? "form1"
+                  : "form2"
+              }
+            >
               <div className="formInput">
-                <label htmlFor="file">
-                  Image: <DriveFolderUploadOutlinedIcon className="icon" />
-                </label>
+                <label htmlFor="file">Image:</label>
                 <input
-                  type="file"
+                  type="text"
                   id="file"
                   onChange={(e) => setFile(e.target.files[0])}
-                  style={{ display: "none" }}
+                  placeholder="past you URL"
                 />
               </div>
 

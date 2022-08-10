@@ -4,7 +4,6 @@ import Navbar from "../../components/Navbar/Navbar";
 import Widget from "../../components/Widget/Widget";
 import Featured from "../../components/Featured/Featured";
 import Chart from "../../components/Chart/Chart";
-import Tablee from "../../components/Table/Table";
 
 const Home = () => {
   return (

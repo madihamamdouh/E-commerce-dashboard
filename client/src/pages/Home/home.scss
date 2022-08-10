@@ -8,24 +8,11 @@
     .widgets,
     .charts {
       display: flex;
-      padding: 0.6rem 1rem;
+      padding: 1rem 1rem;
       gap: 0.5rem;
     }
     .charts {
       padding: 0.4rem 1rem;
-    }
-    .listContainer {
-      padding: 0.8em;
-      margin: 0.8em;
-      border-radius: 10px;
-      -webkit-box-shadow: 2px 4px 10px rgba(172, 172, 172, 0.37);
-      box-shadow: 2px 4px 10px rgba(172, 172, 172, 0.404);
-      .listTitle {
-        font-size: 0.8rem;
-        font-weight: 500;
-        color: #242a37;
-        margin-bottom: 0.6em;
-      }
     }
   }
 }

@@ -6,7 +6,7 @@ import { useState } from "react";
 
 const Update = ({ inputs, title }) => {
   const [file, setFile] = useState("");
-
+  console.log(title);
   return (
     <div className="new">
       <Sidebar />
@@ -26,7 +26,7 @@ const Update = ({ inputs, title }) => {
             />
           </div>
           <div className="right">
-            <form>
+            <form className={title === "Add New Product" ? "form1" : "form2"}>
               <div className="formInput">
                 <label htmlFor="file">
                   Image: <DriveFolderUploadOutlinedIcon className="icon" />
@@ -40,14 +40,7 @@ const Update = ({ inputs, title }) => {
               </div>
 
               {inputs.map((input) => (
-                <div
-                  className={
-                    input.type === "brandInputs"
-                      ? "brandInput"
-                      : "productInputs"
-                  }
-                  key={input.id}
-                >
+                <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
                   <input type={input.type} placeholder={input.placeholder} />
                 </div>

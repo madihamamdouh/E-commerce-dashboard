@@ -59,14 +59,13 @@ function Product({ product }) {
     },
   ];
   return (
-    <div className="product">
+    <div className="product" style={{ height: 490, width: "92%" }}>
       <div className="productTitle">All products</div>
       <DataGrid
-        className="datagrid"
         rows={data}
         columns={productColumns.concat(actionColumn)}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
+        pageSize={7}
+        rowsPerPageOptions={[7]}
         checkboxSelection
       />
     </div>

@@ -100,13 +100,19 @@ function App() {
                   />
                 </Route>
                 <Route path="/orders" element={<Orders />} />
+
                 <Route path="brands">
                   <Route index element={<BrandList />} />
-                  <Route path=":brandId" element={<Brand />} />
                   <Route
                     path="new"
                     element={
                       <Update inputs={brandInputs} title="Add New Brand" />
+                    }
+                  />
+                  <Route
+                    path="new"
+                    element={
+                      <Update inputs={productInputs} title="Add New Product" />
                     }
                   />
                 </Route>

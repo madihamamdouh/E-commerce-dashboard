@@ -8,38 +8,6 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
 const Tablee = ({ orders }) => {
-  const rows = [
-    {
-      id: 3586,
-      product: "T-shert Adidas",
-      customer: "Mohammed Ashraf",
-      img: "https://images.unsplash.com/photo-1581655353564-df123a1eb820?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80",
-      date: "1 March",
-      amount: 125,
-      method: "Cash on delivery",
-      status: "Approved",
-    },
-    {
-      id: 45454,
-      product: "T-shert Adidas",
-      customer: "Mohammed Ashraf",
-      img: "https://images.unsplash.com/photo-1581655353564-df123a1eb820?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80",
-      date: "1 June",
-      amount: 12,
-      method: "Online delivery",
-      status: "Pending",
-    },
-    {
-      id: 6554565,
-      product: "T-shert Adidas",
-      customer: "Mohammed Ashraf",
-      img: "https://images.unsplash.com/photo-1581655353564-df123a1eb820?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80",
-      date: "1 April",
-      amount: 5,
-      method: "Cash on delivery",
-      status: "Approved",
-    },
-  ];
   return (
     <TableContainer component={Paper} className="table">
       <Table sx={{ minWidth: 650 }} aria-label="simple table">

@@ -55,14 +55,13 @@ const Datatable = () => {
   ];
 
   return (
-    <div className="datatable">
-      <div className="datatableTitle">All users</div>
+    <div className="datatable" style={{ height: 490, width: "92%" }}>
+      <div className="datatableTitle">All products</div>
       <DataGrid
-        className="datagrid"
         rows={data}
         columns={userColumns.concat(actionColumn)}
-        pageSize={8}
-        rowsPerPageOptions={[8]}
+        pageSize={7}
+        rowsPerPageOptions={[7]}
         checkboxSelection
       />
     </div>

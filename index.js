@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
 const authRouter = require("./routes/auth");
+const userRouter = require("./routes/user");
 
 //to be able to use dotenv library
 dotenv.config();
@@ -23,6 +24,7 @@ app.use(express.json());
 
 //get rest api request by useing the end point
 app.use("/api/auth", authRouter);
+app.use("/api/users", userRouter);
 
 //listen to the server
 app.listen(process.env.PORT || 5000, () => {

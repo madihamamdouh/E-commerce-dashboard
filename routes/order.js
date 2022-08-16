@@ -52,7 +52,7 @@ router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
 // //get Order
 router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
   try {
-    const orders = await Order.find({ userId: req.params.userId });
+    const orders = await Order.findOne({ userId: req.params.userId });
 
     res.status(200).json(orders);
   } catch {
@@ -84,9 +84,9 @@ router.get("/income", verifyTokenAndAdmin, async (req, res) => {
   try {
     const incoms = await Order.aggregate([
       {
-        $match: { createdAt: { $gte: "prevMonth" } },
+        $match: { createdAt: { $gte: prevMonth } },
       },
-      { $project: { month: { $month: "$createdAt" }, salse: "$amount" } },
+      { $project: { month: { $month: "$createdAt" }, sales: "$amount" } },
       { $group: { _id: "$month", total: { $sum: "$sales" } } },
     ]);
     res.status(200).json(incoms);

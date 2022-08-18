@@ -3,7 +3,6 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
 import Chart from "../../components/Chart/Chart";
 import { Link } from "react-router-dom";
-import DashContext from "../../Context/dataContext";
 
 function ProductSingle() {
   return (

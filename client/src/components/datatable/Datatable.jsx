@@ -3,21 +3,13 @@ import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../../Data/productData";
 import { useState, useContext, useEffect } from "react";
 import DashContext from "../../Context/dataContext";
-import { deleteCustomer } from "../../ShopifyFront/customer";
+
 import { Link } from "react-router-dom";
 
 const Datatable = () => {
   const [data, setData] = useState(userRows);
   const { customers } = useContext(DashContext);
-  const handleDelete = (id) => {
-    deleteCustomer(id)
-      .then((res) => {
-        console.log("deleted");
-      })
-      .catch((er) => {
-        console.log(er.response);
-      });
-  };
+  const handleDelete = (id) => {};
 
   useEffect(() => {
     let rowCustomers = [];

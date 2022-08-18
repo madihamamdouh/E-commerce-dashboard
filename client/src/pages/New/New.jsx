@@ -2,6 +2,7 @@ import "./new.scss";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
+
 import { useState } from "react";
 import { addProduct } from "../../ShopifyFront/product";
 
@@ -17,7 +18,7 @@ const New = ({ inputs, title }) => {
 
   const createPostHandler = async (e) => {
     e.preventDefault();
-    const newProduct = { name, desc, price, inStock, brand, category, vendor };
+    // const newProduct = { name, desc, price, inStock, brand, category, vendor };
 
     // if (file) {
     //   const data = new FormData();
@@ -31,13 +32,6 @@ const New = ({ inputs, title }) => {
     //     console.log(err);
     //   }
     // }
-    try {
-      const res = addProduct(newProduct);
-      console.log(res.data);
-      window.location.replace("/product/" + res.data.id);
-    } catch (err) {
-      console.log(err.response.data);
-    }
   };
   return (
     <div className="new">

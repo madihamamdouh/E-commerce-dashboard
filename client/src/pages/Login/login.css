@@ -72,7 +72,11 @@
 .form-field:focus {
   border-color: #242a37;
 }
-
+.form .error {
+  font-size: 0.8em;
+  font-weight: 300;
+  color: #ff2d55;
+}
 .form > button {
   padding: 12px 10px;
   border: 0;

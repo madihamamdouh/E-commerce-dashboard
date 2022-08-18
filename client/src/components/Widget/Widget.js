@@ -4,16 +4,18 @@ import PersonIcon from "@mui/icons-material/Person";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import PaidIcon from "@mui/icons-material/Paid";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
+import { Link } from "react-router-dom";
+
 const Widget = ({ type }) => {
   let data;
-  const amount = 100;
+  const amount = 5;
   const deff = 30;
   switch (type) {
     case "users":
       data = {
-        title: "users",
+        title: "new users",
         isMoney: false,
-        link: "see all users",
+        link: "see all new users",
         icon: (
           <PersonIcon
             className="icon"
@@ -73,7 +75,9 @@ const Widget = ({ type }) => {
           {data.isMoney && "$"}
           {amount}
         </span>
-        <span className="link">{data.link}</span>
+        <Link to="/newusers" style={{ textDecoration: "none" }}>
+          <span className="link">{data.link}</span>
+        </Link>
       </div>
       <div className="right">
         <div className="percentag positive ">

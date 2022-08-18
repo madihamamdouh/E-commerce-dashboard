@@ -1,59 +1,58 @@
 import "./login.css";
-import axios from "axios";
-import { useContext, useRef } from "react";
-import { Link } from "react-router-dom";
-import { login } from "../../ShopifyFront/authentication";
-
-import DashContext from "../../Context/dataContext";
+import { useState } from "react";
+import { login } from "../../Redux/apiCalls";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  // const { login } = useContext(DashContext);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const { isFetching, error } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
-  const handelLogin = async (e) => {
+  const handelLogin = (e) => {
     e.preventDefault();
-
-    try {
-      const res = login({
-        email: emailRef.current.value,
-        password: passwordRef.current.value,
-      });
-
-      res.data && window.location.replace("/");
-    } catch (err) {
-      console.log(err.response.data);
-    }
+    login(dispatch, { username, password });
   };
 
   return (
     <>
       <div className="login">
-        <form onSubmit={handelLogin}>
+        <form>
           <div className="lleft">
             <div className="header">
               <h2 className="animation a1">Welcome Back</h2>
               <h4 className="animation a2">
-                Log in to your account using Email and password
+                Log in to your account using Username and password
               </h4>
             </div>
             <div className="form">
               <input
                 type="text"
                 className="form-field animation a3"
-                placeholder="admin@email.com"
-                ref={emailRef}
+                placeholder="admin"
+                onChange={(e) => setUsername(e.target.value)}
               />
               <input
                 type="password"
                 className="form-field animation a4"
                 placeholder="Password"
-                ref={passwordRef}
+                onChange={(e) => setPassword(e.target.value)}
               />
-
-              <button className="animation a6" type="submit">
+              <button
+                className="animation a6"
+                type="button"
+                onClick={handelLogin}
+                disabled={isFetching}
+              >
                 LOGIN
               </button>
+              {error ? (
+                <span className="error">
+                  something is wrong!.. please try again
+                </span>
+              ) : (
+                false
+              )}
             </div>
           </div>
         </form>

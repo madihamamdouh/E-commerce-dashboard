@@ -1,6 +1,4 @@
-import React, { useContext, Fragment, useEffect, useState } from "react";
-import "react-toastify/dist/ReactToastify.css";
-import PrivateRoute from "./PrivateRouts";
+import React, { Fragment, useContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./style/dark.scss";
 //front pages
@@ -22,129 +20,84 @@ import {
 import { user, admin } from "./Data/adminUserData";
 
 //context
-import DashContext from "./Context/dataContext";
 import { DarkModeContext } from "./Context/darkModeContext";
-//pack
-import { getCustomers } from "./ShopifyFront/customer";
-import { getProducts } from "./ShopifyFront/product";
-import { getOrders } from "./ShopifyFront/order";
-import { getCategories } from "./ShopifyFront/category";
 import BrandList from "./pages/prandList/BrandList";
+import { useSelector } from "react-redux";
+import NewUsers from "./pages/NewUsers/NewUsers";
+import Checkout from "./components/payment/Checkout";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
-  const [products, setProducts] = useState([]);
-  const [customers, serCustomers] = useState([]);
-  const [orders, setOrders] = useState([]);
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    /***************** request all products ****************** */
-    getProducts()
-      .then((res) => {
-        // console.log(res.data)
-        setProducts(res.data["products"]);
-      })
-      .catch((er) => {
-        // console.log(er.response);
-      });
-    /************ request orders ************************/
-    getOrders()
-      .then((res) => {
-        // console.log(res.data)
-        setOrders(res.data["orders"]);
-      })
-      .catch((er) => {
-        // console.log(er.response);
-      });
-    /**************** request all customers ********************/
-    getCustomers()
-      .then((res) => {
-        // console.log(res.data)
-        serCustomers(res.data["customers"]);
-      })
-      .catch((er) => {
-        // console.log(er.response);
-      });
-    /*****************  request all categories ********************/
-    getCategories()
-      .then((res) => {
-        console.log(res.data);
-        setCategories(res.data);
-      })
-      .catch((er) => {
-        console.log(er.response);
-      });
-  }, []);
-
+  const admins = JSON.parse(
+    JSON.parse(localStorage.getItem("persist:root")).user
+  ).currentUser.isAdmin;
   return (
-    <DashContext.Provider value={{ products, orders, categories, customers }}>
-      <div className={darkMode ? "app dark" : "app"}>
-        <BrowserRouter>
-          <Fragment>
-            <Routes>
-              <Route path="/" element={<PrivateRoute />}>
-                <Route path="/" element={<Home />} />
-
-                <Route path="admin">
-                  <Route index element={<Single users={admin} />} />
-                  <Route
-                    path="update"
-                    element={
-                      <UpdateUser inputs={adminInputs} title="Update Admin" />
-                    }
-                  />
-                </Route>
-                <Route path="users">
-                  <Route index element={<List />} />
-                  <Route path=":userId" element={<Single users={user} />} />
-                  <Route
-                    path="update"
-                    element={
-                      <UpdateUser inputs={userInputs} title="Update User" />
-                    }
-                  />
-                </Route>
-                <Route path="products">
-                  <Route index element={<ProductList />} />
-                  <Route path=":productId" element={<ProductSingle />} />
-                  <Route
-                    path="new"
-                    element={
-                      <Update inputs={productInputs} title="Add New Product" />
-                    }
-                  />
-                  <Route
-                    path="update"
-                    element={
-                      <Update inputs={productInputs} title="Update Product" />
-                    }
-                  />
-                </Route>
-                <Route path="/orders" element={<Orders />} />
-
-                <Route path="brands">
-                  <Route index element={<BrandList />} />
-                  <Route
-                    path="new"
-                    element={
-                      <Update inputs={brandInputs} title="Add New Brand" />
-                    }
-                  />
-                  <Route
-                    path="new"
-                    element={
-                      <Update inputs={productInputs} title="Add New Product" />
-                    }
-                  />
-                </Route>
+    <div className={darkMode ? "app dark" : "app"}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          {admins && (
+            <>
+              <Route exact path="/" element={<Home />} />
+              <Route path="admin">
+                <Route index element={<Single users={admin} />} />
+                <Route
+                  path="update"
+                  element={
+                    <UpdateUser inputs={adminInputs} title="Update Admin" />
+                  }
+                />
               </Route>
-              <Route path="/login" element={<Login />} />
-            </Routes>
-          </Fragment>
-        </BrowserRouter>
-      </div>
-    </DashContext.Provider>
+              <Route path="users">
+                <Route index element={<List />} />
+                <Route path=":userId" element={<Single users={user} />} />
+                <Route
+                  path="update"
+                  element={
+                    <UpdateUser inputs={userInputs} title="Update User" />
+                  }
+                />
+              </Route>
+              <Route path="products">
+                <Route index element={<ProductList />} />
+                <Route path=":productId" element={<ProductSingle />} />
+                <Route
+                  path="new"
+                  element={
+                    <Update inputs={productInputs} title="Add New Product" />
+                  }
+                />
+                <Route
+                  path="update"
+                  element={
+                    <Update inputs={productInputs} title="Update Product" />
+                  }
+                />
+              </Route>
+              <Route path="/orders" element={<Orders />} />
+
+              <Route path="brands">
+                <Route index element={<BrandList />} />
+                <Route
+                  path="new"
+                  element={
+                    <Update inputs={brandInputs} title="Add New Brand" />
+                  }
+                />
+                <Route
+                  path="new"
+                  element={
+                    <Update inputs={productInputs} title="Add New Product" />
+                  }
+                ></Route>
+              </Route>
+              <Route path="/newusers" element={<NewUsers />}></Route>
+              <Route path="/payment" element={<Checkout />}></Route>
+            </>
+          )}
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 

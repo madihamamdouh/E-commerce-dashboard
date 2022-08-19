@@ -1,23 +1,24 @@
 const router = require("express").Router();
-const KEY = process.env.STRIPE_SEC;
-const stripe = require("stripe")(KEY);
+
+const stripe = require("stripe")(
+  "sk_test_51LXRN8BORXathC5LUGqhQSb3OiyObm8UO7LQtXFMKdg5IkdrXsDF2cbS5PGzN50AA0NauOYQwnJx9coJkVDch54m00Bu3Z6rMl"
+);
 
 //create payment method with request body and return request function
-router.post("/payment", (req, res) => {
-  stripe.charges.create(
-    {
-      //token returned by stripe
-      source: req.body.tokenId,
-      amount: req.body.amount,
-      currency: "usd",
+router.post("/payment", async (req, res) => {
+  const { items } = req.body;
+
+  // Create a PaymentIntent with the order amount and currency
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: "550",
+    currency: "aed",
+    automatic_payment_methods: {
+      enabled: true,
     },
-    (stripeErr, stripeRes) => {
-      if (stripeErr) {
-        res.status(500).json(stripeErr);
-      } else {
-        res.status(200).json(stripeRes);
-      }
-    }
-  );
+  });
+
+  res.send({
+    clientSecret: paymentIntent.client_secret,
+  });
 });
 module.exports = router;

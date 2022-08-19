@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from "react";
+import React, { useContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./style/dark.scss";
 //front pages
@@ -24,6 +24,7 @@ import { DarkModeContext } from "./Context/darkModeContext";
 import BrandList from "./pages/prandList/BrandList";
 import NewUsers from "./pages/NewUsers/NewUsers";
 import { useSelector } from "react-redux";
+import New from "./pages/New/New";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -54,15 +55,12 @@ function App() {
           <Route path="products">
             <Route index element={<ProductList />} />
             <Route path=":productId" element={<ProductSingle />} />
-            <Route
-              path="new"
-              element={
-                <Update inputs={productInputs} title="Add New Product" />
-              }
-            />
+            <Route path="new" element={<New title="Add New Product" />} />
             <Route
               path="update/:productId"
-              element={<Update inputs={productInputs} title="Update Product" />}
+              element={
+                <Update inputs={productInputs} header="Update Product" />
+              }
             />
           </Route>
           <Route path="/orders" element={<Orders />} />

@@ -1,31 +1,63 @@
 import "./product.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { productColumns, productRows } from "../../Data/productsource";
 import { Link } from "react-router-dom";
-import { useState, useContext, useEffect } from "react";
-import DashContext from "../../Context/dataContext";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteProduct, getProduct } from "../../Redux/apiCalls";
 
-function Product({ product }) {
-  const { products } = useContext(DashContext);
-  const [data, setData] = useState(productRows);
-  // const [product, setProduct] = setProduct({});
-  const handleDelete = (id) => {};
+const productColumns = [
+  { field: "_id", headerName: "ID", width: 150 },
 
+  {
+    field: "product",
+    headerName: "Product",
+    width: 200,
+    renderCell: (params) => {
+      return (
+        <div className="cellWithImg">
+          <img className="cellImg" src={params.row.img} alt="IMG" />
+          {params.row.title}
+        </div>
+      );
+    },
+  },
+  {
+    field: "desc",
+    headerName: "Description",
+    width: 200,
+  },
+  {
+    field: "price",
+    headerName: "Price",
+    width: 100,
+  },
+  {
+    field: "size",
+    headerName: "Size",
+    width: 80,
+  },
+  {
+    field: "color",
+    headerName: "Color",
+    width: 100,
+  },
+  {
+    field: "inStock",
+    headerName: "InStock",
+    width: 100,
+  },
+];
+
+function Product() {
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.product.products);
   useEffect(() => {
-    let rowProducts = [];
-    products.map((product) => {
-      let customProduct = {
-        id: product.id,
-        name: product.title,
-        img: "https://cdn.sklum.com/ie/1062614/sofa-de-2-plazas-en-lino-y-tela-aktic.jpg",
-        price: product.variants[0].price,
-        description: product.body_html,
-      };
-      rowProducts.push(customProduct);
-    });
-    setData(rowProducts);
-  }, [products]);
+    getProduct(dispatch);
+  }, [dispatch]);
 
+  const handleDelete = (id) => {
+    deleteProduct(id, dispatch);
+  };
   const actionColumn = [
     {
       field: "action",
@@ -34,12 +66,15 @@ function Product({ product }) {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/products/update" style={{ textDecoration: "none" }}>
+            <Link
+              to={"/products/" + params.row._id}
+              style={{ textDecoration: "none" }}
+            >
               <div className="viewButton">Edit</div>
             </Link>
             <div
               className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
+              onClick={() => handleDelete(params.row._id)}
             >
               Delete
             </div>
@@ -52,7 +87,8 @@ function Product({ product }) {
     <div className="product" style={{ height: 490, width: "92%" }}>
       <div className="productTitle">All products</div>
       <DataGrid
-        rows={data}
+        rows={products}
+        getRowId={() => Math.random() * 100}
         columns={productColumns.concat(actionColumn)}
         pageSize={7}
         rowsPerPageOptions={[7]}

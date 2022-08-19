@@ -2,9 +2,16 @@ import "./productSingle.scss";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
 import Chart from "../../components/Chart/Chart";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function ProductSingle() {
+  //const location = useLocation();
+  const location = useLocation();
+  const productId = location.pathname.split("/")[2];
+  const product = useSelector((state) =>
+    state.product.products.find((item) => item._id === productId)
+  );
   return (
     <div className="single">
       <Sidebar />
@@ -12,33 +19,36 @@ function ProductSingle() {
         <Navbar />
         <div className="top">
           <div className="left">
-            <Link to="/products/update" style={{ textDecoration: "none" }}>
+            <Link
+              to={"/products/update/" + productId}
+              style={{ textDecoration: "none" }}
+            >
               <div className="editButton">Edit</div>
             </Link>
             <h1 className="title">Product Info</h1>
             <div className="item">
-              <img
-                src="https://cdn.sklum.com/ie/1062614/sofa-de-2-plazas-en-lino-y-tela-aktic.jpg"
-                alt=""
-                className="itemImge"
-              />
+              <img src={product.img} alt="" className="itemImge" />
               <div className="details">
-                <h1 className="itemTitle">Product ID: 1</h1>
+                <h1 className="itemTitle">Product: {product.title}</h1>
                 <div className="detailItem">
-                  <span className="itemKey">Name:</span>
-                  <span className="itemValue">Sofa</span>
+                  <span className="itemKey">ID:</span>
+                  <span className="itemValue">{productId}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Price:</span>
-                  <span className="itemValue">450$</span>
+                  <span className="itemValue">{product.price + "$"}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Description:</span>
-                  <span className="itemValue">Width : " " , Height :" "</span>
+                  <span className="itemValue">{product.desc}</span>
                 </div>
                 <div className="detailItem">
-                  <span className="itemKey">Made In:</span>
-                  <span className="itemValue">KSA</span>
+                  <span className="itemKey">Size:</span>
+                  <span className="itemValue">{product.size}</span>
+                </div>
+                <div className="detailItem">
+                  <span className="itemKey">Color:</span>
+                  <span className="itemValue">{product.color}</span>
                 </div>
               </div>
             </div>

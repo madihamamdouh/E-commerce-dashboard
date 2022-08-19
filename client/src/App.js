@@ -22,79 +22,67 @@ import { user, admin } from "./Data/adminUserData";
 //context
 import { DarkModeContext } from "./Context/darkModeContext";
 import BrandList from "./pages/prandList/BrandList";
-import { useSelector } from "react-redux";
 import NewUsers from "./pages/NewUsers/NewUsers";
-import Checkout from "./components/payment/Checkout";
+import { useSelector } from "react-redux";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
-  const admins = JSON.parse(
-    JSON.parse(localStorage.getItem("persist:root")).user
-  ).currentUser.isAdmin;
+  // const admins = useSelector((state) => state.user.currentUser.isAdmin);
   return (
     <div className={darkMode ? "app dark" : "app"}>
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
-          {admins && (
-            <>
-              <Route exact path="/" element={<Home />} />
-              <Route path="admin">
-                <Route index element={<Single users={admin} />} />
-                <Route
-                  path="update"
-                  element={
-                    <UpdateUser inputs={adminInputs} title="Update Admin" />
-                  }
-                />
-              </Route>
-              <Route path="users">
-                <Route index element={<List />} />
-                <Route path=":userId" element={<Single users={user} />} />
-                <Route
-                  path="update"
-                  element={
-                    <UpdateUser inputs={userInputs} title="Update User" />
-                  }
-                />
-              </Route>
-              <Route path="products">
-                <Route index element={<ProductList />} />
-                <Route path=":productId" element={<ProductSingle />} />
-                <Route
-                  path="new"
-                  element={
-                    <Update inputs={productInputs} title="Add New Product" />
-                  }
-                />
-                <Route
-                  path="update"
-                  element={
-                    <Update inputs={productInputs} title="Update Product" />
-                  }
-                />
-              </Route>
-              <Route path="/orders" element={<Orders />} />
+          {/* {admins && (
+            <> */}
+          <Route exact path="/" element={<Home />} />
+          <Route path="admin">
+            <Route index element={<Single users={admin} />} />
+            <Route
+              path="update"
+              element={<UpdateUser inputs={adminInputs} title="Update Admin" />}
+            />
+          </Route>
+          <Route path="users">
+            <Route index element={<List />} />
+            <Route path=":userId" element={<Single users={user} />} />
+            <Route
+              path="update"
+              element={<UpdateUser inputs={userInputs} title="Update User" />}
+            />
+          </Route>
+          <Route path="products">
+            <Route index element={<ProductList />} />
+            <Route path=":productId" element={<ProductSingle />} />
+            <Route
+              path="new"
+              element={
+                <Update inputs={productInputs} title="Add New Product" />
+              }
+            />
+            <Route
+              path="update/:productId"
+              element={<Update inputs={productInputs} title="Update Product" />}
+            />
+          </Route>
+          <Route path="/orders" element={<Orders />} />
 
-              <Route path="brands">
-                <Route index element={<BrandList />} />
-                <Route
-                  path="new"
-                  element={
-                    <Update inputs={brandInputs} title="Add New Brand" />
-                  }
-                />
-                <Route
-                  path="new"
-                  element={
-                    <Update inputs={productInputs} title="Add New Product" />
-                  }
-                ></Route>
-              </Route>
-              <Route path="/newusers" element={<NewUsers />}></Route>
-              <Route path="/payment" element={<Checkout />}></Route>
-            </>
-          )}
+          <Route path="brands">
+            <Route index element={<BrandList />} />
+            <Route
+              path="new"
+              element={<Update inputs={brandInputs} title="Add New Brand" />}
+            />
+            <Route
+              path="new"
+              element={
+                <Update inputs={productInputs} title="Add New Product" />
+              }
+            ></Route>
+          </Route>
+          <Route path="/newusers" element={<NewUsers />}></Route>
+          {/* </>
+          )} */}
         </Routes>
       </BrowserRouter>
     </div>

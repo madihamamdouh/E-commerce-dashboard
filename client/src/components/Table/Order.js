@@ -8,7 +8,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useState } from "react";
-import { userRequest } from "../../requestApi";
+import { publicRequest, userRequest } from "../../requestApi";
 import { useEffect } from "react";
 
 export default function Order() {
@@ -26,7 +26,7 @@ export default function Order() {
   useEffect(() => {
     const getOrder = async () => {
       try {
-        const res = await userRequest.get("orders");
+        const res = await userRequest.get("orders/");
         setOrder(res.data);
       } catch (err) {
         console.log(err);

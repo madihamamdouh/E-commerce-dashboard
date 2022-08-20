@@ -20,10 +20,10 @@
       align-items: flex-start;
       .logo {
         text-decoration: none;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         font-family: 400;
         color: #ff2d55;
-        margin: 0.5rem 1.2rem;
+        margin: 0.5rem 0.5rem;
         cursor: pointer;
       }
       hr {
@@ -37,16 +37,16 @@
 
     .profile {
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
+      margin-inline-start: 1.2em;
       cursor: pointer;
       span {
         font-family: "Montserrat", sans-serif;
-        padding-inline-start: 0.6em;
       }
       .link {
         margin-left: 10px;
-        font-size: 0.7rem;
+        font-size: 0.9rem;
         font-weight: bold;
         text-decoration: none;
         color: #242a37;
@@ -56,7 +56,7 @@
         height: 2rem;
         border-radius: 30px;
         object-fit: cover;
-        box-shadow: 5px 11px 23px #f14c6a54;
+        box-shadow: 5px 11px 23px #f14c6a75;
       }
     }
   }

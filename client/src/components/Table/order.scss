@@ -1,24 +1,20 @@
-.order {
-  height: 100vh;
+.table {
+  height: 100%;
+  .tableRow {
+    .cellWithImg {
+      display: flex;
+      align-items: center;
 
-  .cellWithImg {
-    display: flex;
-    align-items: center;
-
-    .cellImg {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-right: 20px;
+      .cellImg {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 20px;
+      }
     }
-  }
 
-  .cellWithStatus {
-    padding: 5px;
-    border-radius: 5px;
-
-    &.active {
+    &.completed {
       background-color: rgba(0, 128, 0, 0.05);
       color: green;
     }
@@ -30,12 +26,6 @@
       background-color: rgba(255, 0, 0, 0.05);
       color: crimson;
     }
-  }
-
-  .cellAction {
-    display: flex;
-    align-items: center;
-    gap: 15px;
 
     .deleteButton {
       padding: 2px 5px;

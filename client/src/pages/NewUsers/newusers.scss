@@ -11,6 +11,22 @@
       border-radius: 10px;
       -webkit-box-shadow: 2px 4px 10px rgba(172, 172, 172, 0.37);
       box-shadow: 2px 4px 10px rgba(172, 172, 172, 0.404);
+      .table {
+        .tableRow {
+          .cellWithImg {
+            display: flex;
+            align-items: center;
+
+            .cellImg {
+              width: 2.2rem;
+              height: 2.2rem;
+              border-radius: 25px;
+              object-fit: cover;
+              margin-right: 20px;
+            }
+          }
+        }
+      }
       .listTitle {
         font-size: 1em;
         font-weight: 500;

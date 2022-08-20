@@ -8,20 +8,20 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useState } from "react";
-import { publicRequest, userRequest } from "../../requestApi";
+import { userRequest } from "../../requestApi";
 import { useEffect } from "react";
 
 export default function Order() {
   const [orders, setOrder] = useState([]);
 
-  // const handleDelete = async (id) => {
-  //   try {
-  //     const res = await userRequest.delete("/orders/" + id);
-  //     console.log(res.data);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  const handleDelete = async (id) => {
+    try {
+      const res = await userRequest.delete("/orders/" + id);
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
     const getOrder = async () => {
@@ -46,27 +46,32 @@ export default function Order() {
             <TableCell className="tableCell">Total </TableCell>
             <TableCell className="tableCell">Address</TableCell>
             <TableCell className="tableCell">Status </TableCell>
+            <TableCell className="tableCell">Action </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {orders.map((row) => (
-            <TableRow key={row._id}>
-              <TableCell className="tableRow">{row.userId}</TableCell>
+          {orders.map((order) => (
+            <TableRow key={order._id}>
+              <TableCell className="tableRow">{order._id}</TableCell>
+              <TableCell className="tableRow">{order.userId}</TableCell>
               <TableCell className="tableRow">
-                <div className="productWrapper">
-                  <img src={row.img} alt="" className="productImg" />
-                  {row.username}
+                {order.products[0].quantity}
+              </TableCell>
+              <TableCell className="tableRow">{order.totalPrice}</TableCell>
+              <TableCell className="tableRow">
+                {order.address.country}-{order.address.city}
+              </TableCell>
+              <TableCell className={`tableRow  ${order.status}`}>
+                {order.status}
+              </TableCell>
+              <TableCell className="tableRow ">
+                <div
+                  className="deleteButton"
+                  onClick={() => handleDelete(order._id)}
+                >
+                  Delete
                 </div>
               </TableCell>
-              <TableCell className="tableRow">
-                {row.products[0].productId}
-              </TableCell>
-              <TableCell className="tableRow">
-                {row.products[0].quantity}
-              </TableCell>
-              <TableCell className="tableRow">{row.amount}</TableCell>
-              <TableCell className="tableRow">{row.address}</TableCell>
-              <TableCell className="tableRow">{row.stauts}</TableCell>
             </TableRow>
           ))}
         </TableBody>

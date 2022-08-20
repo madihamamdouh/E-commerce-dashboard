@@ -7,8 +7,10 @@ import DragHandleOutlinedIcon from "@mui/icons-material/DragHandleOutlined";
 import { useContext } from "react";
 import { DarkModeContext } from "../../Context/darkModeContext";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Navebar = () => {
   const { dispatch } = useContext(DarkModeContext);
+  const admins = useSelector((state) => state.user.currentUser);
 
   return (
     <div className="navbar">
@@ -34,7 +36,7 @@ const Navebar = () => {
           </div>
           <Link to="/admin">
             <div className="item">
-              <img src="./images/14.jpg" alt="avatar" className="avatar" />
+              <img src={admins.img} alt="avatar" className="avatar" />
             </div>
           </Link>
 

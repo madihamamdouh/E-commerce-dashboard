@@ -28,7 +28,7 @@ import New from "./pages/New/New";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
-  // const admins = useSelector((state) => state.user.currentUser.isAdmin);
+  const admin = useSelector((state) => state.user.currentUser);
   return (
     <div className={darkMode ? "app dark" : "app"}>
       <BrowserRouter>

@@ -16,6 +16,7 @@ const Widget = ({ type }) => {
         title: "new users",
         isMoney: false,
         link: "see all new users",
+        to: "/newusers",
         icon: (
           <PersonIcon
             className="icon"
@@ -29,6 +30,7 @@ const Widget = ({ type }) => {
         title: "orders",
         isMoney: false,
         link: "see all orders",
+        to: "/orders",
         icon: (
           <ShoppingBagIcon
             className="icon"
@@ -42,6 +44,7 @@ const Widget = ({ type }) => {
         title: "earnings",
         isMoney: true,
         link: "view net earnings",
+        to: "/",
         icon: (
           <PaidIcon
             className="icon"
@@ -55,6 +58,7 @@ const Widget = ({ type }) => {
         title: "balance",
         isMoney: true,
         link: "see details",
+        to: "/",
         icon: (
           <AccountBalanceWalletIcon
             className="icon"
@@ -75,7 +79,7 @@ const Widget = ({ type }) => {
           {data.isMoney && "$"}
           {amount}
         </span>
-        <Link to="/newusers" style={{ textDecoration: "none" }}>
+        <Link to={data.to} style={{ textDecoration: "none" }}>
           <span className="link">{data.link}</span>
         </Link>
       </div>

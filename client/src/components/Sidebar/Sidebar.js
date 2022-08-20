@@ -8,9 +8,11 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import "./sidebar.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "../../Context/darkModeContext";
+import { useSelector } from "react-redux";
 
 const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
+  const admins = useSelector((state) => state.user.currentUser);
 
   return (
     <div className="sidebar">
@@ -18,15 +20,15 @@ const Sidebar = () => {
         <div className="mainlogo">
           <span className="logo">
             <Link to="/" className="logo">
-              Gitt.
+              SOUQ.COM
             </Link>
           </span>
           <hr />
         </div>
         <div className="profile">
-          <img src="./images/14.jpg" alt="" />
+          <img src={admins.img} alt="" />
           <Link to="/admin" className="link">
-            Nona salem
+            {admins.username}
           </Link>
         </div>
       </div>

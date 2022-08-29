@@ -11,24 +11,19 @@ import ProductList from "./pages/productList/ProductList";
 import ProductSingle from "./pages/productSingle/ProductSingle";
 import Update from "./pages/update/Update";
 import UpdateUser from "./pages/UpdateUsers/UpdateUsers";
-import {
-  productInputs,
-  brandInputs,
-  userInputs,
-  adminInputs,
-} from "./Data/formSource";
-import { user, admin } from "./Data/adminUserData";
 
 //context
 import { DarkModeContext } from "./Context/darkModeContext";
 import BrandList from "./pages/prandList/BrandList";
 import NewUsers from "./pages/NewUsers/NewUsers";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import New from "./pages/New/New";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
-  const admin = useSelector((state) => state.user.currentUser);
+  //const admin = useSelector((state) => state.user.currentUser);
+  const admin = "admin";
+  const user = "user";
   return (
     <div className={darkMode ? "app dark" : "app"}>
       <BrowserRouter>
@@ -41,7 +36,7 @@ function App() {
             <Route index element={<Single users={admin} />} />
             <Route
               path="update"
-              element={<UpdateUser inputs={adminInputs} title="Update Admin" />}
+              element={<UpdateUser  title="Update Admin" />}
             />
           </Route>
           <Route path="users">
@@ -49,7 +44,7 @@ function App() {
             <Route path=":userId" element={<Single users={user} />} />
             <Route
               path="update"
-              element={<UpdateUser inputs={userInputs} title="Update User" />}
+              element={<UpdateUser  title="Update User" />}
             />
           </Route>
           <Route path="products">
@@ -59,7 +54,7 @@ function App() {
             <Route
               path="update/:productId"
               element={
-                <Update inputs={productInputs} header="Update Product" />
+                <Update header="Update Product" />
               }
             />
           </Route>
@@ -69,12 +64,12 @@ function App() {
             <Route index element={<BrandList />} />
             <Route
               path="new"
-              element={<Update inputs={brandInputs} title="Add New Brand" />}
+              element={<Update  title="Add New Brand" />}
             />
             <Route
               path="new"
               element={
-                <Update inputs={productInputs} title="Add New Product" />
+                <Update title="Add New Product" />
               }
             ></Route>
           </Route>

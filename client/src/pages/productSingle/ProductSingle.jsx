@@ -4,8 +4,45 @@ import Navbar from "../../components/Navbar/Navbar";
 import Chart from "../../components/Chart/Chart";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { userRequest } from "../../requestApi";
+import { useEffect, useMemo, useState } from "react";
 
 function ProductSingle() {
+  const [userStats, setUserStats] = useState([]);
+
+  const MONTHS = useMemo(
+    () => [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Agu",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
+    []
+  );
+
+  useEffect(() => {
+    const getStats = async () => {
+      try {
+        const res = await userRequest.get("/users/stat");
+        res.data.map((item) =>
+          setUserStats((prev) => [
+            ...prev,
+            { name: MONTHS[item._id - 1], "Active User": item.total },
+          ])
+        );
+      } catch {}
+    };
+    getStats();
+  }, [MONTHS]);
+
   //const location = useLocation();
   const location = useLocation();
   const productId = location.pathname.split("/")[2];
@@ -54,7 +91,13 @@ function ProductSingle() {
             </div>
           </div>
           <div className="right">
-            <Chart aspect={3 / 2} title="Product Sales( Last 6 Months)" />
+            <Chart
+              data={userStats}
+              title="User Analytics"
+              grid
+              dataKey="Active User"
+              aspect={2 / 1}
+            />
           </div>
         </div>
       </div>

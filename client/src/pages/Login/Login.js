@@ -12,6 +12,7 @@ const Login = () => {
   const handelLogin = (e) => {
     e.preventDefault();
     login(dispatch, { username, password });
+    isFetching === false && window.location.replace("/");
   };
 
   return (
@@ -38,20 +39,18 @@ const Login = () => {
                 placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
               />
+
               <button
                 className="animation a6"
                 type="button"
                 onClick={handelLogin}
-                disabled={isFetching}
               >
                 LOGIN
               </button>
-              {error ? (
+              {error && (
                 <span className="error">
                   something is wrong!.. please try again
                 </span>
-              ) : (
-                false
               )}
             </div>
           </div>

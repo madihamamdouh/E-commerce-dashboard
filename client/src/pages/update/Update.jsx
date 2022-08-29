@@ -63,8 +63,8 @@ const Update = ({ header }) => {
         // Handle successful uploads on complete
         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          const newProduct = { ...inputs, img: downloadURL, productId };
-          updateProduct(productId, newProduct, dispatch);
+          const newProduct = { ...inputs, img: downloadURL, _id: productId };
+          updateProduct(dispatch, productId, newProduct);
           console.log(newProduct);
         });
       }
@@ -79,14 +79,7 @@ const Update = ({ header }) => {
         <div className="bottom">
           <div className="left">
             <h1>{header}</h1>
-            <img
-              src={
-                file
-                  ? URL.createObjectURL(file)
-                  : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
-              }
-              alt=""
-            />
+            <img src={file ? URL.createObjectURL(file) : product.img} alt="" />
           </div>
           <div className="right">
             <form
@@ -113,7 +106,7 @@ const Update = ({ header }) => {
                 <input
                   type="text"
                   name="title"
-                  // placeholder={product.title}
+                  placeholder="product.title"
                   onChange={changeInput}
                 />
               </div>
@@ -122,7 +115,7 @@ const Update = ({ header }) => {
                 <input
                   type="text"
                   name="desc"
-                  // placeholder={product.desc}
+                  //placeholder={product.desc}
                   onChange={changeInput}
                 />
               </div>

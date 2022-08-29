@@ -8,12 +8,16 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import "./sidebar.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "../../Context/darkModeContext";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../Redux/apiCalls";
 
 const Sidebar = () => {
-  const { dispatch } = useContext(DarkModeContext);
+  // let { dispatch } = useContext(DarkModeContext);
+  const dispatch = useDispatch();
   const admins = useSelector((state) => state.user.currentUser);
-
+  const handelLogout = () => {
+    logout(dispatch);
+  };
   return (
     <div className="sidebar">
       <div className="top">
@@ -65,7 +69,7 @@ const Sidebar = () => {
               Brands
             </li>
           </Link>
-          <Link to="/login" className="link">
+          <Link to="/login" className="link" onClick={handelLogout}>
             <li className="dashitem">
               <LogoutIcon className="icon" />
               Logout
@@ -76,11 +80,11 @@ const Sidebar = () => {
       <div className="bottom">
         <div
           className="colorOpt"
-          onClick={() => dispatch({ type: "LIGHT" })}
+          // onClick={() => dispatch({ type: "LIGHT" })}
         ></div>
         <div
           className="colorOpt"
-          onClick={() => dispatch({ type: "DARK" })}
+          //onClick={() => dispatch({ type: "DARK" })}
         ></div>
       </div>
     </div>

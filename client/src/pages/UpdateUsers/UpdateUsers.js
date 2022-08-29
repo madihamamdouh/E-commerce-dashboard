@@ -1,9 +1,34 @@
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { userRequest } from "../../requestApi";
+import { useLocation } from "react-router-dom";
 
-const UpdateUser = ({ inputs, title }) => {
-  const [file, setFile] = useState("");
+const UpdateUser = ({ title }) => {
+  const [inputs, setInputs] = useState({});
+  const [file, setFile] = useState(null);
+  const location = useLocation();
+  const userId = location.pathname.split("/")[3];
+  const changeInput = (e) => {
+    setInputs((prev) => {
+      return { ...prev, [e.target.name]: e.target.value };
+    });
+  };
+
+  useEffect(() => {
+    const newUser = { ...inputs, _id: userId };
+    const handleClick = async (e) => {
+      e.preventDefault();
+      try {
+        const res = await userRequest.put("users/" + userId, newUser);
+        console.log(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    handleClick();
+  }, []);
+
   return (
     <div className="new">
       <Sidebar />
@@ -34,12 +59,51 @@ const UpdateUser = ({ inputs, title }) => {
                 />
               </div>
 
-              {inputs.map((input) => (
-                <div className="formInput" key={input.id}>
-                  <label>{input.label}</label>
-                  <input type={input.type} placeholder={input.placeholder} />
-                </div>
-              ))}
+              <div className="formInput">
+                <label>Product Name</label>
+                <input
+                  type="text"
+                  name="title"
+                  placeholder="product.title"
+                  onChange={changeInput}
+                />
+              </div>
+              <div className="formInput">
+                <label>Product Desc</label>
+                <input
+                  type="text"
+                  name="desc"
+                  //placeholder={product.desc}
+                  onChange={changeInput}
+                />
+              </div>
+              <div className="formInput">
+                <label>Product Category</label>
+                <input
+                  type="text"
+                  name="category"
+                  // placeholder={product.category}
+                  onChange={changeInput}
+                />
+              </div>
+              <div className="formInput">
+                <label>Product Brand</label>
+                <input
+                  type="text"
+                  name="brand"
+                  // placeholder={product.brand}
+                  onChange={changeInput}
+                />
+              </div>
+              <div className="formInput">
+                <label>Price</label>
+                <input
+                  type="number"
+                  name="price"
+                  // placeholder={product.price}
+                  onChange={changeInput}
+                />
+              </div>
               <button> UPDATE </button>
             </form>
           </div>

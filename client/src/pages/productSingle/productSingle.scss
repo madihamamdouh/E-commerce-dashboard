@@ -1,0 +1,96 @@
+.single {
+  display: flex;
+  width: 100%;
+  background: #fcfcfc;
+  .singleContainer {
+    flex: 6;
+
+    .top {
+      padding: 1em;
+      margin-top: 1em;
+      display: flex;
+      align-items: center;
+      gap: 1em;
+
+      .left {
+        flex: 1;
+        height: 68vh;
+        -webkit-box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+        box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+        padding: 20px;
+        position: relative;
+        border-radius: 9px;
+
+        .editButton {
+          position: absolute;
+          top: 0;
+          right: 0;
+          padding: 5px;
+          font-size: 12px;
+          color: #f9c678;
+          background-color: #7551f818;
+          cursor: pointer;
+          border-radius: 0px 8px 0px 0px;
+        }
+
+        .item {
+          display: flex;
+          gap: 0.2em;
+
+          .itemImge {
+            width: 5rem;
+            height: 4rem;
+            border-radius: 45%;
+            object-fit: cover;
+          }
+
+          .details {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: flex-start;
+            gap: 0.8em;
+            .itemTitle {
+              margin-bottom: 8px;
+              color: #555;
+              font-size: 1.8rem;
+            }
+
+            .detailItem {
+              font-size: 14px;
+
+              .itemKey {
+                font-weight: bold;
+                color: rgb(94, 94, 94);
+                margin-right: 5px;
+              }
+
+              .itemValue {
+                font-weight: 300;
+              }
+            }
+          }
+        }
+      }
+
+      .right {
+        flex: 2;
+        border-radius: 10px;
+      }
+    }
+
+    .bottom {
+      border-radius: 10px;
+      -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+      box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+      padding: 20px;
+      margin: 10px 20px;
+    }
+
+    .title {
+      font-size: 16px;
+      color: rgb(99, 98, 98);
+      margin-bottom: 20px;
+    }
+  }
+}

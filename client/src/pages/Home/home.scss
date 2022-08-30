@@ -1,0 +1,19 @@
+.home {
+  box-sizing: border-box;
+  background: #fcfcfc;
+  height: 100vh;
+
+  display: flex;
+  .container {
+    flex: 5;
+    .widgets,
+    .charts {
+      display: flex;
+      padding: 1rem 1rem;
+      gap: 0.5rem;
+    }
+    .charts {
+      padding: 0.4rem 1rem;
+    }
+  }
+}

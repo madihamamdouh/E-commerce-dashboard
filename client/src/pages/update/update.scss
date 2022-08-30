@@ -4,6 +4,7 @@
   width: 100%;
   display: flex;
   background: #fcfcfc;
+  height: 100vh;
 
   .newContainer {
     flex: 6;
@@ -16,6 +17,7 @@
       margin: 20px;
       display: flex;
       border-radius: 8px;
+      height: 60%;
 
       h1 {
         color: #242a37;

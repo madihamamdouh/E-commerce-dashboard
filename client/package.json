@@ -39,7 +39,7 @@
     "timeago.js": "^4.0.2"
   },
   "scripts": {
-    "predepoly": "npm run build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
